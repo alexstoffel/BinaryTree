@@ -48,7 +48,6 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
-
         BSTNode node = this.getRoot();
         // This will return true if it is in tree
         while (node != null){
@@ -71,7 +70,6 @@ public class BST {
         // TODO: Complete inorder traversal
         ArrayList<BSTNode> nodes = new ArrayList<BSTNode>();
         inOrderFunction(this.getRoot(), nodes);
-
         // return the arrayList
         return nodes;
     }
@@ -82,7 +80,6 @@ public class BST {
         if (node == null){
             return;
         }
-
         // left, node, right format
         inOrderFunction(node.getLeft(), arr);
         arr.add(node);
@@ -106,7 +103,6 @@ public class BST {
         if (node == null){
             return;
         }
-
         // preorder format: node, left, right
         arr.add(node);
         getPreorderFunction(node.getLeft(), arr);
@@ -120,7 +116,6 @@ public class BST {
         // TODO: Complete postorder traversal
         ArrayList<BSTNode> nodes = new ArrayList<BSTNode>();
         getPostorderFunction(this.getRoot(), nodes);
-
         // return the arrayList
         return nodes;
     }
@@ -130,7 +125,6 @@ public class BST {
         if (node == null){
             return;
         }
-
         // posterOrder format: left, right, root
         getPostorderFunction(node.getLeft(), arr);
         getPostorderFunction(node.getRight(), arr);
@@ -176,7 +170,19 @@ public class BST {
      */
     public boolean isValidBST() {
         // TODO: Optional Challenge!
-        return false;
+        // get arraylist in order
+        ArrayList<BSTNode> numbers = this.getInorder();
+
+        // Check to make sure it is valid
+        int num = numbers.get(0).getVal();
+
+        for (int i = 1; i < numbers.size(); i++){
+            if (numbers.get(i).getVal() <= num){
+                return false;
+            }
+            num = numbers.get(i).getVal();
+        }
+        return true;
     }
 
     public static void main(String[] args) {
